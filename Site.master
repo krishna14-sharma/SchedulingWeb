@@ -1,0 +1,131 @@
+<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14275a" />
+    <title>Scheduling</title>
+    <link href="<%: ResolveUrl("~/lib/bootstrap/css/bootstrap.min.css") %>" rel="stylesheet" />
+    <link href="<%: ResolveUrl("~/lib/bootstrap-icons/bootstrap-icons.min.css") %>" rel="stylesheet" />
+    <link href="<%: ResolveUrl("~/Content/site.css") %>?v=2" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body data-root="<%: ResolveUrl("~/") %>">
+    <form id="form1" runat="server" autocomplete="off" novalidate="novalidate">
+
+    <nav class="navbar navbar-expand-xl navbar-dark app-nav sticky-top no-print">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="<%: ResolveUrl("~/Dashboard.aspx") %>">
+                <span class="brand-logo"><img src="<%: ResolveUrl("~/Content/img/logo.jpg") %>" alt="Phoenix" /></span>
+                <span class="brand-text">Scheduling</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-label="Open menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end app-offcanvas" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="mainMenuLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="<%: ResolveUrl("~/Dashboard.aspx") %>" data-menu="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="schedule"><i class="bi bi-calendar-week"></i> Schedule</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/HatchProduction.aspx") %>">Hatch Production</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/DealerScheduling.aspx") %>">Dealer/Other Scheduling</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/DemandScheduling.aspx") %>">Demand Scheduling</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/EditScheduling.aspx") %>">Edit Scheduling</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="masters"><i class="bi bi-database"></i> Master</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Masters/AreaMaster.aspx") %>">Area Master</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Masters/ProductMaster.aspx") %>">Product Master</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Masters/HatcheryMaster.aspx") %>">Hatchery Master</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Masters/HeadCreation.aspx") %>">Head Creation</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="demand"><i class="bi bi-pencil-square"></i> Demand Edit</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/EditDemand.aspx") %>">Edit Demand</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="layer"><i class="bi bi-egg"></i> Layer Schedule</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: LayerScheduleUrl %>" target="_blank" rel="noopener">Layer Schedule <i class="bi bi-box-arrow-up-right small"></i></a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Schedule/LayerScheduleUpdate.aspx") %>">Layer Schedule Update</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="reports"><i class="bi bi-file-earmark-bar-graph"></i> Report</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/SchedulingReport.aspx") %>">Scheduling Report</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/MonthlyDealerReport.aspx") %>">Monthly Dealer Report (Chicks)</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/DealerTrData.aspx") %>">Monthly Dealer Tr Data</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/LayerTentativeDate.aspx") %>">Layer Placement Tentative Date</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/ConsolidateSchedule.aspx") %>">Consolidate Schedule Report</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Reports/RateDiffReport.aspx") %>">Schedule Rate vs Circular Rate</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-menu="sales"><i class="bi bi-receipt"></i> Sales Report</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Sales/DMData.aspx") %>">DM Data</a></li>
+                                <li><a class="dropdown-item" href="<%: ResolveUrl("~/Sales/TRData.aspx") %>">TR Data</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav-user d-flex align-items-center gap-2 mt-3 mt-xl-0">
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-calendar3"></i> <%: FinYearLabel %></span>
+                        <span class="text-white-50 small"><i class="bi bi-person-circle"></i> <%: UserName %></span>
+                        <a class="btn btn-sm btn-outline-light" href="<%: ResolveUrl("~/Logout.aspx") %>"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid app-main">
+        <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 no-print">
+            <h1 class="page-title"><%: Page.Title %></h1>
+            <asp:ContentPlaceHolder ID="HeaderActions" runat="server" />
+        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </main>
+
+    <!-- Toasts (replace MsgBox) -->
+    <div class="toast-container position-fixed top-0 end-0 p-3 no-print" id="toastArea"></div>
+
+    <!-- Busy overlay shown during AJAX calls -->
+    <div id="busy" class="busy-overlay" aria-hidden="true"><div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div></div>
+
+    <!-- Confirm dialog (replaces "Are U sure" MessageBox) -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="confirmTitle">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body" id="confirmBody">Are you sure?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="confirmOk">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form>
+
+    <script src="<%: ResolveUrl("~/lib/jquery/jquery.min.js") %>"></script>
+    <script src="<%: ResolveUrl("~/lib/bootstrap/js/bootstrap.bundle.min.js") %>"></script>
+    <script src="<%: ResolveUrl("~/Scripts/app.js") %>?v=3"></script>
+    <asp:ContentPlaceHolder ID="Scripts" runat="server" />
+</body>
+</html>
